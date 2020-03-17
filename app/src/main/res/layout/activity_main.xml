@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:text="@string/Headhunter"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeStepGranularity="2sp"/>
+
+    <ImageView
+        android:id="@+id/HeadhunterImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/Headhunter"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/updatePrice"
+        android:onClick="callUpdatePrice"/>
+
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/chaosOrbImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/chaos_orb_foreground" />
+
+            <TextView
+                android:id="@+id/priceDisplayChaos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/priceInChaos"/>
+            </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/exaltedOrbImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/exalted_orb_foreground" />
+
+            <TextView
+                android:id="@+id/priceDisplayExalted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/priceInExalted"/>
+
+        </TableRow>
+
+
+    </TableLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

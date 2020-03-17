@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HeadhunterHunter</string>
+    <string name="Headhunter">Headhunter Leather Belt</string>
+    <string name="updatePrice">Update Price</string>
+    <string name="priceInChaos">Price in Chaos</string>
+    <string name="priceInExalted">Price in Exalted</string>
+</resources>
