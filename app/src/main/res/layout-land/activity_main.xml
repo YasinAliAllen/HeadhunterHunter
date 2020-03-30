@@ -7,36 +7,53 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/currentItemText"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/currentItem"
-        android:textAlignment="center"
-        app:autoSizeMaxTextSize="100sp"
-        app:autoSizeMinTextSize="12sp"
-        app:autoSizeStepGranularity="2sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/itemImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/imageItem"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-        app:layout_constraintTop_toBottomOf="@+id/currentItemText"
-        app:srcCompat="@drawable/headhunter" />
-
 
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/currentItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="@string/currentItem"
+            android:textAlignment="center"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeTextType="uniform" />
+
+
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageItem"
+            app:srcCompat="@drawable/headhunter" />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentItemText">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
 
         <TableRow
             android:layout_width="match_parent"
@@ -96,14 +113,12 @@
         android:adjustViewBounds="false"
         android:background="#00FFFFFF"
         android:contentDescription="@string/settings"
+        android:onClick="clickedSettings"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.957"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="0.919"
-        app:srcCompat="@android:drawable/ic_menu_preferences"
-        android:onClick="clickedSettings"/>
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
+        app:srcCompat="@android:drawable/ic_menu_preferences" />
 
     <TextView
         android:id="@+id/itemSettingsText"

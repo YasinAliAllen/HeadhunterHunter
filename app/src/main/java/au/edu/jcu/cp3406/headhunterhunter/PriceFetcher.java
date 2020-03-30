@@ -44,7 +44,7 @@ public class PriceFetcher {
     PriceFetcher(Context context, String itemName, Runnable updateUIRunnable) {
         HashMap<String, String> itemUrlMap = new HashMap<String, String>() {
             {
-                put("headhunter", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueAccessory&itemId=607");
+                put("Headhunter", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueAccessory&itemId=607");
                 put("Unnatural Instinct", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueJewel&itemId=7376");
                 put("Inspired Learning", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueJewel&itemId=676");
                 put("House of Mirrors", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=DivinationCard&itemId=636");
