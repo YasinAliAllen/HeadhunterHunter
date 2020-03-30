@@ -10,10 +10,23 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
+
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public final static int SETTINGS_REQUEST = 0;
+    private HashMap<String, Integer> itemImageMap = new HashMap<String, Integer>() {
+        {
+            put("Headhunter", R.drawable.headhunter);
+            put("Unnatural Instinct", R.drawable.unnatural_instinct);
+            put("Inspired Learning", R.drawable.inspired_learning);
+            put("House of Mirrors", R.drawable.house_of_mirrors);
+            put("The Doctor", R.drawable.the_doctor);
+            put("The Halcyon", R.drawable.the_halcyon);
+        }
+    };
+
 
 
 
@@ -24,6 +37,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         final Spinner spinner = findViewById(R.id.itemSelector);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.itemArray, android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
 
 
@@ -39,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         ImageView itemImage = findViewById(R.id.itemImage);
-
+        itemImage.setImageResource(itemImageMap.get(parent.getSelectedItem().toString()));
     }
 
     @Override
