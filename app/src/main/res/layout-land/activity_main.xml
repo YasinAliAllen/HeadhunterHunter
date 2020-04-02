@@ -7,19 +7,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <TableRow
+        android:id="@+id/headerRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/currentItemText"
@@ -33,7 +27,6 @@
             app:autoSizeStepGranularity="2sp"
             app:autoSizeTextType="uniform" />
 
-
         <ImageView
             android:id="@+id/itemImage"
             android:layout_width="wrap_content"
@@ -41,19 +34,16 @@
             android:contentDescription="@string/imageItem"
             app:srcCompat="@drawable/headhunter" />
 
-        </TableRow>
-
-    </TableLayout>
-
+    </TableRow>
 
     <TableLayout
-        android:id="@+id/tableLayout2"
+        android:id="@+id/priceTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
+        app:layout_constraintTop_toBottomOf="@+id/headerRow">
 
         <TableRow
             android:layout_width="match_parent"
@@ -107,7 +97,7 @@
     </TableLayout>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="false"
@@ -117,7 +107,7 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/priceTable"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
 
     <TextView
@@ -125,11 +115,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/configuration"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/settingsButton"
+        app:layout_constraintEnd_toStartOf="@+id/settingsButton"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="@+id/settingsButton"
         app:layout_constraintVertical_bias="0.0" />
 
 

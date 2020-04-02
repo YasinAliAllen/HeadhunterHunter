@@ -2,8 +2,6 @@ package au.edu.jcu.cp3406.headhunterhunter;
 
 import android.content.Context;
 import android.os.Handler;
-import android.widget.TextView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,8 +18,10 @@ import java.util.HashMap;
 
 public class PriceFetcher {
 
+
+
     enum FetchType{CURRENCY, ITEM}
-    private double exaltedPrice = 100;
+    private double exaltedPrice = 1;
     private double chaosValue = 0;
     private double exaltedValue = 0;
     private String itemUrl = "";
@@ -30,7 +30,7 @@ public class PriceFetcher {
     private final Handler updateUIHandler = new Handler();
     private final Runnable fetchItemRunnable = new Runnable() {
         public void run() {
-            fetchItemPrice(context);
+            fetchItemPrice();
         }
     };
     private Runnable updateUIRunnable;
@@ -41,21 +41,26 @@ public class PriceFetcher {
         }
     };
 
-    PriceFetcher(Context context, String itemName, Runnable updateUIRunnable) {
-        HashMap<String, String> itemUrlMap = new HashMap<String, String>() {
-            {
-                put("Headhunter", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueAccessory&itemId=607");
-                put("Unnatural Instinct", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueJewel&itemId=7376");
-                put("Inspired Learning", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueJewel&itemId=676");
-                put("House of Mirrors", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=DivinationCard&itemId=636");
-                put("The Doctor", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=DivinationCard&itemId=1476");
-                put("The Halcyon", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueAccessory&itemId=1961");
-            }
-        };
+    private HashMap<String, String> itemUrlMap = new HashMap<String, String>() {
+        {
+            put("Headhunter", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueAccessory&itemId=607");
+            put("Unnatural Instinct", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueJewel&itemId=7376");
+            put("Inspired Learning", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueJewel&itemId=676");
+            put("House of Mirrors", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=DivinationCard&itemId=636");
+            put("The Doctor", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=DivinationCard&itemId=1476");
+            put("The Halcyon", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueAccessory&itemId=1961");
+        }
+    };
 
+    PriceFetcher(Context context, String itemName, Runnable updateUIRunnable) {
         this.context = context;
         this.itemUrl = itemUrlMap.get(itemName);
         this.updateUIRunnable = updateUIRunnable;
+    }
+
+    PriceFetcher(Context context, String itemName) {
+        this.context = context;
+        this.itemUrl = itemUrlMap.get(itemName);
     }
 
     double getChaosValue() {
@@ -64,6 +69,10 @@ public class PriceFetcher {
 
     double getExaltedValue() {
         return exaltedValue;
+    }
+
+    public double getExaltedPrice() {
+        return exaltedPrice;
     }
 
     void fetchData(final FetchType fetchType) {
@@ -92,7 +101,7 @@ public class PriceFetcher {
         exaltedRequest.add(exaltedDataRequest);
     }
 
-    private void fetchItemPrice(Context context){
+    private void fetchItemPrice(){
         RequestQueue itemRequest = Volley.newRequestQueue(context);
         JsonArrayRequest itemDataRequest = new JsonArrayRequest(Request.Method.GET,
                 itemUrl, null, new Response.Listener<JSONArray>() {

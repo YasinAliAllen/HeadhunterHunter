@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickedSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
+        intent.putExtra("itemName", itemName);
+        intent.putExtra("itemImageMap", itemImageMap);
         startActivityForResult(intent, SettingsActivity.SETTINGS_REQUEST);
     }
 

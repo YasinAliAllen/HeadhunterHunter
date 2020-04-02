@@ -16,18 +16,7 @@ import java.util.HashMap;
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public final static int SETTINGS_REQUEST = 0;
-    private HashMap<String, Integer> itemImageMap = new HashMap<String, Integer>() {
-        {
-            put("Headhunter", R.drawable.headhunter);
-            put("Unnatural Instinct", R.drawable.unnatural_instinct);
-            put("Inspired Learning", R.drawable.inspired_learning);
-            put("House of Mirrors", R.drawable.house_of_mirrors);
-            put("The Doctor", R.drawable.the_doctor);
-            put("The Halcyon", R.drawable.the_halcyon);
-        }
-    };
-
-
+    private HashMap<String, Integer> itemImageMap = new HashMap<String, Integer>();
 
 
     @Override
@@ -35,9 +24,14 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
         final Spinner spinner = findViewById(R.id.itemSelector);
+        Intent intent = getIntent();
+        String itemName = intent.getStringExtra("itemName");
+        itemImageMap = (HashMap<String, Integer>)intent.getSerializableExtra("itemImageMap");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.itemArray, android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        int spinnerPosition = adapter.getPosition(itemName);
+        spinner.setSelection(spinnerPosition);
     }
 
 
