@@ -1,5 +1,6 @@
 package au.edu.jcu.cp3406.headhunterhunter;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Locale;
+
+import static java.util.Objects.requireNonNull;
 
 public class MainActivity extends AppCompatActivity {
     private final Runnable updateUIRunnable = new Runnable() {
@@ -42,9 +45,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("itemName", itemName);
     }
 
     @Override
@@ -59,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
         final TextView exaltedTextView = findViewById(R.id.priceDisplayExalted);
         final ImageView itemImage = findViewById(R.id.itemImage);
         currentItemTextView.setText(itemName);
-        chaosTextView.setText(String.format(Locale.getDefault(), "%.2f", priceFetcher.getChaosValue()));
-        exaltedTextView.setText(String.format(Locale.getDefault(), "%.2f", priceFetcher.getExaltedValue()));
-        itemImage.setImageResource(itemImageMap.get(itemName));
+        chaosTextView.setText(String.format(Locale.getDefault(), "%.2f",
+                priceFetcher.getChaosValue()));
+        exaltedTextView.setText(String.format(Locale.getDefault(), "%.2f",
+                priceFetcher.getExaltedValue()));
+        itemImage.setImageResource(requireNonNull(itemImageMap.get(itemName)));
     }
 
     public void clickedSettings(View view) {
@@ -74,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == SettingsActivity.SETTINGS_REQUEST) {
             if (resultCode == RESULT_OK) {
                 if (data != null) {

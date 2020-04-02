@@ -9,22 +9,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 
-public class PriceFetcher {
-
-
-
+class PriceFetcher {
     enum FetchType{CURRENCY, ITEM}
     private double exaltedPrice = 1;
     private double chaosValue = 0;
     private double exaltedValue = 0;
-    private String itemUrl = "";
+    private String itemUrl;
     private Context context;
     private final Handler requestHandler = new Handler();
     private final Handler updateUIHandler = new Handler();
@@ -71,10 +66,11 @@ public class PriceFetcher {
         return exaltedValue;
     }
 
-    public double getExaltedPrice() {
+    double getExaltedPrice() {
         return exaltedPrice;
     }
 
+    //pulls currency price data from poe.ninja, using it for future item pricing if fetchType is ITEM
     void fetchData(final FetchType fetchType) {
         RequestQueue exaltedRequest = Volley.newRequestQueue(context);
         JsonObjectRequest exaltedDataRequest = new JsonObjectRequest(Request.Method.GET,
@@ -83,7 +79,8 @@ public class PriceFetcher {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray exaltedData = response.getJSONArray("receiveCurrencyGraphData");
-                    exaltedPrice = exaltedData.getJSONObject(exaltedData.length() - 1).getDouble("value");
+                    exaltedPrice = exaltedData.getJSONObject(exaltedData.length() - 1)
+                            .getDouble("value");
                     if(fetchType == FetchType.ITEM){
                         requestHandler.post(fetchItemRunnable);
                     }
@@ -101,6 +98,7 @@ public class PriceFetcher {
         exaltedRequest.add(exaltedDataRequest);
     }
 
+    //pulls item data from poe.ninja, calling handle on completion to update UI
     private void fetchItemPrice(){
         RequestQueue itemRequest = Volley.newRequestQueue(context);
         JsonArrayRequest itemDataRequest = new JsonArrayRequest(Request.Method.GET,
