@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             itemName = savedInstanceState.getString("itemName");
         }
         priceFetcher = new PriceFetcher(this, itemName, updateUIRunnable);
-        priceFetcher.fetchData(PriceFetcher.FetchType.ITEM);
+        priceFetcher.fetchData(PriceFetcher.FetchType.FINAL);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        priceFetcher.fetchData(PriceFetcher.FetchType.ITEM);
+        priceFetcher.fetchData(PriceFetcher.FetchType.FINAL);
     }
 
     public void updateDisplay() {
@@ -85,6 +85,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         priceFetcher = new PriceFetcher(this, itemName, updateUIRunnable);
-        priceFetcher.fetchData(PriceFetcher.FetchType.ITEM);
+        priceFetcher.fetchData(PriceFetcher.FetchType.FINAL);
     }
 }

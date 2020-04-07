@@ -15,21 +15,16 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 class PriceFetcher {
-    enum FetchType{CURRENCY, ITEM}
+    enum FetchType{TEST, FINAL}
     private double exaltedPrice = 1;
     private double chaosValue = 0;
     private double exaltedValue = 0;
     private String itemUrl;
     private Context context;
-    private final Handler requestHandler = new Handler();
-    private final Handler updateUIHandler = new Handler();
-    private final Runnable fetchItemRunnable = new Runnable() {
-        public void run() {
-            fetchItemPrice();
-        }
-    };
-    private Runnable updateUIRunnable;
 
+
+
+    private Runnable updateUIRunnable;
     private HashMap<String, String> currencyUrlMap = new HashMap<String, String>() {
         {
             put("Exalted Orb", "https://poe.ninja/api/data/currencyhistory?league=Delirium&type=Currency&currencyId=2");
@@ -81,7 +76,13 @@ class PriceFetcher {
                     JSONArray exaltedData = response.getJSONArray("receiveCurrencyGraphData");
                     exaltedPrice = exaltedData.getJSONObject(exaltedData.length() - 1)
                             .getDouble("value");
-                    if(fetchType == FetchType.ITEM){
+                    if(fetchType == FetchType.FINAL){
+                        final Handler requestHandler = new Handler();
+                        final Runnable fetchItemRunnable = new Runnable() {
+                            public void run() {
+                                fetchItemPrice();
+                            }
+                        };
                         requestHandler.post(fetchItemRunnable);
                     }
                 } catch (JSONException e) {
@@ -100,6 +101,7 @@ class PriceFetcher {
 
     //pulls item data from poe.ninja, calling handle on completion to update UI
     private void fetchItemPrice(){
+        final Handler updateUIHandler = new Handler();
         RequestQueue itemRequest = Volley.newRequestQueue(context);
         JsonArrayRequest itemDataRequest = new JsonArrayRequest(Request.Method.GET,
                 itemUrl, null, new Response.Listener<JSONArray>() {
