@@ -12,12 +12,21 @@
     <string name="configuration">Item Configuration: </string>
     <string name="back">Back</string>
 
-    <string-array name="itemArray">
+    <string-array name="itemNameArray">
         <item>Headhunter</item>
         <item>The Halcyon</item>
         <item>Unnatural Instinct</item>
         <item>Inspired Learning</item>
         <item>The Doctor</item>
         <item>House of Mirrors</item>
+    </string-array>
+
+    <string-array name="itemUrlArray">
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueAccessory&amp;itemId=607</item>
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueJewel&amp;itemId=7376</item>
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueJewel&amp;itemId=676</item>
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=DivinationCard&amp;itemId=636</item>
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=DivinationCard&amp;itemId=1476</item>
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueAccessory&amp;itemId=1961</item>
     </string-array>
 </resources>

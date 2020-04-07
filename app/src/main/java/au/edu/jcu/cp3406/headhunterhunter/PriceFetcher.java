@@ -21,28 +21,20 @@ class PriceFetcher {
     private double exaltedValue = 0;
     private String itemUrl;
     private Context context;
-
-
-
     private Runnable updateUIRunnable;
     private HashMap<String, String> currencyUrlMap = new HashMap<String, String>() {
         {
             put("Exalted Orb", "https://poe.ninja/api/data/currencyhistory?league=Delirium&type=Currency&currencyId=2");
         }
     };
-
-    private HashMap<String, String> itemUrlMap = new HashMap<String, String>() {
-        {
-            put("Headhunter", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueAccessory&itemId=607");
-            put("Unnatural Instinct", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueJewel&itemId=7376");
-            put("Inspired Learning", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueJewel&itemId=676");
-            put("House of Mirrors", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=DivinationCard&itemId=636");
-            put("The Doctor", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=DivinationCard&itemId=1476");
-            put("The Halcyon", "https://poe.ninja/api/data/itemhistory?league=Delirium&type=UniqueAccessory&itemId=1961");
-        }
-    };
+    private HashMap<String, String> itemUrlMap = new HashMap<String, String>() {};
 
     PriceFetcher(Context context, String itemName, Runnable updateUIRunnable) {
+        String[] itemUrlArray = context.getResources().getStringArray(R.array.itemUrlArray);
+        String[] itemNameArray = context.getResources().getStringArray(R.array.itemNameArray);
+        for (int i = 0; i < itemNameArray.length; i++){
+            itemUrlMap.put(itemNameArray[i], itemUrlArray[i]);
+        }
         this.context = context;
         this.itemUrl = itemUrlMap.get(itemName);
         this.updateUIRunnable = updateUIRunnable;
@@ -65,13 +57,14 @@ class PriceFetcher {
         return exaltedPrice;
     }
 
-    //pulls currency price data from poe.ninja, using it for future item pricing if fetchType is ITEM
+    //pulls currency price data from poe.ninja, using it for future item pricing if fetchType is FINAL
     void fetchData(final FetchType fetchType) {
         RequestQueue exaltedRequest = Volley.newRequestQueue(context);
         JsonObjectRequest exaltedDataRequest = new JsonObjectRequest(Request.Method.GET,
                 currencyUrlMap.get("Exalted Orb"), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                //try pull the current price of exalted orbs from poe.ninja
                 try {
                     JSONArray exaltedData = response.getJSONArray("receiveCurrencyGraphData");
                     exaltedPrice = exaltedData.getJSONObject(exaltedData.length() - 1)
@@ -107,6 +100,7 @@ class PriceFetcher {
                 itemUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                //try get latest item price in chaos, convert to price in exalts and display both
                 try {
                     JSONObject latestItemData = response.getJSONObject(response.length() - 1);
                     chaosValue = latestItemData.getDouble("value");

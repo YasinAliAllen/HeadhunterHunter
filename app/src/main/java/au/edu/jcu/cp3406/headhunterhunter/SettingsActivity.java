@@ -7,9 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.HashMap;
 
 
@@ -17,7 +15,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     public final static int SETTINGS_REQUEST = 0;
     private HashMap<String, Integer> itemImageMap = new HashMap<String, Integer>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +24,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         Intent intent = getIntent();
         String itemName = intent.getStringExtra("itemName");
         itemImageMap = (HashMap<String, Integer>)intent.getSerializableExtra("itemImageMap");
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.itemArray, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.itemNameArray, android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         int spinnerPosition = adapter.getPosition(itemName);
@@ -48,6 +46,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         ImageView itemImage = findViewById(R.id.itemImage);
         itemImage.setImageResource(itemImageMap.get(parent.getSelectedItem().toString()));
+        //this warning can be checked with a try catch or an if non-null however the warning remains
     }
 
     @Override
