@@ -26,6 +26,8 @@ public class FetchPriceTest {
 
         PriceFetcher priceFetcher = new PriceFetcher(appContext, "Headhunter");
         priceFetcher.fetchData(PriceFetcher.FetchType.TEST);
+        /* assert that the default value has been changed due to it being overwritten with fetched
+         value */
         assertNotEquals(1, priceFetcher.getExaltedPrice());
     }
 }

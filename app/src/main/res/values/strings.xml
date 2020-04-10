@@ -23,10 +23,10 @@
 
     <string-array name="itemUrlArray">
         <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueAccessory&amp;itemId=607</item>
-        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueJewel&amp;itemId=7376</item>
-        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueJewel&amp;itemId=676</item>
-        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=DivinationCard&amp;itemId=636</item>
-        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=DivinationCard&amp;itemId=1476</item>
         <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueAccessory&amp;itemId=1961</item>
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueJewel&amp;itemId=676</item>
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=UniqueJewel&amp;itemId=7376</item>
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=DivinationCard&amp;itemId=1476</item>
+        <item>https://poe.ninja/api/data/itemhistory?league=Delirium&amp;type=DivinationCard&amp;itemId=636</item>
     </string-array>
 </resources>

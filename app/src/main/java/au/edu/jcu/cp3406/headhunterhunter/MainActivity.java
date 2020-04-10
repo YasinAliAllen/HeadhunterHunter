@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     PriceFetcher priceFetcher;
     private String itemName = "Headhunter";
     /*The initialization of this hashmap can likely be done more efficiently but I am unsure if you
-    can make an array of drawables. If you can implementation would be the same as that seen in
+    can make an array of drawables. If you can, implementation would be the same as that seen in
     the PriceFetcher class.*/
     private HashMap<String, Integer> itemImageMap = new HashMap<String, Integer>() {
         {
